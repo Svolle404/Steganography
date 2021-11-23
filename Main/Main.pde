@@ -1,14 +1,27 @@
-encrypt encrypt;
-decrypt decrypt;
+String message;
+int messageLength;
+PImage img;
+
+encode encode;
+decode decode;
 
 void setup() {
-  String message = "Hej Quynh. Jeg elsker dig rigtig, rigtig meget.";
-  PImage img = loadImage("/");
-  
-  encrypt = new encrypt();
-  decrypt = new decrypt();
-  
-  encrypt.run(message, img);
+  message = "Her kan man skrive den hemmelige besked som man gerne vil skjule i billedets data.";
+  messageLength = message.length();
+  img = loadImage("/outputs/Encoded image 974201.png");
+
+  size(100, 100);
+  surface.setResizable(true);
+  surface.setSize(img.width, img.height);
+
+  encode = new encode();
+  decode = new decode();
+}
+
+void draw() {
+  encode.run(img, message);
+  decode.run(img);
+  exit();
 }
 
 //println(char(unbinary("00101110")));
