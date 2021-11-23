@@ -3,10 +3,12 @@ class decode {
   String binaryMessage = "";
 
   void run(PImage img) {
+    println("Loading image...");
     image(img, 0, 0);
     loadPixels();
 
-    for (int i = 0; i < messageLength*8; i++) {
+    println("Retrieving binary from image data...");
+    for (int i = 0; i < message.length(); i++) {
       color c = pixels[i];
       int r = int(red(c));
       int g = int(green(c));
@@ -22,10 +24,14 @@ class decode {
       binaryMessage += bBinary.charAt(7);
     }
 
-    for (int i = 0; i < messageLength; i++) {
+    println("Converting binary to characters...");
+    for (int i = 0; i < binaryMessage.length()/8; i++) {
       message += char(unbinary(binaryMessage.substring(i*8, i*8+8)));
     }
 
-    println(message);
+    println("Decoding done!");
+    println("");
+
+    println("Decoded message: "+message);
   }
 }

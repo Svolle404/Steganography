@@ -1,21 +1,25 @@
 class encode {
   String binaryMessage = "";
-  int r = int(random(999999));
 
   void run(PImage img, String message) {
+    println("Converting message to binary...");
     for (int i = 0; i < message.length(); i++) {
       binaryMessage += binary(message.charAt(i), 8);
     }
 
+    println("Adjusting for missing bits...");
     while (binaryMessage.length() % 3 != 0) {
       binaryMessage += "1";
     }
 
     int n = binaryMessage.length()/3;
+    n = constrain(n, 0, img.width*img.height);
 
+    println("Loading image...");
     image(img, 0, 0);
     loadPixels();
 
+    println("Adding binary message to image data...");
     for (int i = 0; i < n; i++) {
       color c = pixels[i];
       int r = int(red(c));
@@ -35,7 +39,10 @@ class encode {
       pixels[i] = c;
     }
 
-    updatePixels();
-    save("/outputs/Encoded image "+r+".png");
+    println("Saving new image...");
+    updatePixels();  
+    save("/outputs/Encoded image.png");
+
+    println("Encoding done!");
   }
 }

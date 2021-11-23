@@ -1,14 +1,12 @@
 String message;
-int messageLength;
 PImage img;
 
 encode encode;
 decode decode;
 
 void setup() {
-  message = "Her kan man skrive den hemmelige besked som man gerne vil skjule i billedets data.";
-  messageLength = message.length();
-  img = loadImage("/outputs/Encoded image 974201.png");
+  message = "Here's to the crazy ones. The misfits. The rebels. The troublemakers. The round pegs in the square holes. The ones who see things differently. They're not fond of rules. And they have no respect for the status quo. You can quote them, disagree with them, glorify or vilify them. About the only thing you can't do is ignore them. Because they change things. They push the human race forward. And while some may see them as the crazy ones, we see genius. Because the people who are crazy enough to think they can change the world, are the ones who do.";
+  img = loadImage("/intputs/gravel.png");
 
   size(100, 100);
   surface.setResizable(true);
@@ -19,17 +17,7 @@ void setup() {
 }
 
 void draw() {
-  encode.run(img, message);
-  decode.run(img);
+  // encode.run(img, message);
+  // decode.run(img);
   exit();
 }
-
-//println(char(unbinary("00101110")));
-//println(binary(char('.'), bits));
-//exit();
-
-// Skriv besked i string.
-// Lav besked om til 1'er og 0'er.
-// Load array med pixels fra et billede.
-// I en dobbelt for-løkke ændres de to sidste bits for hver farve (R, G og B) i hvert pixel.
-// Arrayet med pixels gemmes som nyt billede.
