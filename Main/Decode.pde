@@ -1,5 +1,5 @@
 class decode {
-  String message = "";
+  String decodedMessage = "";
   String binaryMessage = "";
 
   void run(PImage img) {
@@ -8,7 +8,7 @@ class decode {
     loadPixels();
 
     println("Retrieving binary from image data...");
-    for (int i = 0; i < message.length(); i++) {
+    for (int i = 0; i < message.length()*8/3; i++) {
       color c = pixels[i];
       int r = int(red(c));
       int g = int(green(c));
@@ -26,12 +26,14 @@ class decode {
 
     println("Converting binary to characters...");
     for (int i = 0; i < binaryMessage.length()/8; i++) {
-      message += char(unbinary(binaryMessage.substring(i*8, i*8+8)));
+      decodedMessage += char(unbinary(binaryMessage.substring(i*8, i*8+8)));
     }
 
-    println("Decoding done!");
-    println("");
+    println("Saving decoded message as a text file...");
+    String[] temp = new String[1];
+    temp[0] = decodedMessage;
+    saveStrings("/outputs/Decoded message.txt", temp);
 
-    println("Decoded message: "+message);
+    println("Decoding done!");
   }
 }
